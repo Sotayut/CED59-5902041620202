@@ -1,17 +1,22 @@
-from flask import Flask,render_template
+from flask import Flask, render_template
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField
+from wtforms.validators import InputRequired, Length
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'Thisisasecret!'
 
+class LoginForm(FlaskForm):
+    name = StringField('Name :', validators=[InputRequired()])
+    username = StringField('Username :', validators=[InputRequired()])
+    email = StringField('Email :', validators=[InputRequired()])
+    password = PasswordField('Password :', validators=[InputRequired()])
 
-@app.route('/')
-def hello_world():
-    return render_template('form.html')
-@app.route('/', methods=["POST"])
-def chack():
-    return 'Welcome to page...'
-@app.route('/', methods=["POST"])
-def h2():
-    return 'xyz';
+@app.route('/' , methods=['GET', 'POST'])
+def form():
+    form = LoginForm()
+    return render_template('form.html', form=form)
+
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

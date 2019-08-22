@@ -2,65 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>form</title>
-    <script type="text/javascript">
-    function chack() {
-    var checkname = document.forms["tast"]["sunames"].value;
-    if (checkname == "") {
-        alert("กรุณากรอก ชื่อจริง");
-        document.getElementById("sun").focus();
-        return false;
-    }
-    {
-        var checklastname = document.forms["tast"]["lastnames"].value;
-        if (checklastname == "") {
-            alert("กรุณากรอก นามสกุล");
-            document.getElementById("lastn").focus();
-            return false;
-        }
-        var checkusename = document.forms["tast"]["usenames"].value;
-        if (checkusename == "") {
-            alert("กรุณากรอก ชื่อเล่น");
-            document.getElementById("suen").focus();
-            return false;
-        }
-        var regularP = /^[a-z 0-9-]{8,18}$/;
-        var password = document.forms["tast"]["passwords"].value;
-        var checkPass = regularP.exec(password);
-        if (!checkPass) {
-            alert("กรุณารหัส ให้ถูกต้อง");
-            document.getElementById("pass").focus();
-            return false;
-        }
-        var regularE = /^(\w_\.= - + ] +)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-        var Email = document.forms["tast"]["emails"].value;
-        var checkEmail = regularE.exec(Email);
-        if (!checkEmail) {
-            alert("กรุณา Email ให้ถูกต้อง");
-            document.getElementById("Email").focus();
-            return false;
-        }
-        if (!checkName == "" && !checkUsername == "" && checkPass && checkEmail) {
-            alert("Every thing is Success !! ");
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-</script>
+    <title>Register</title>
 </head>
-<body>
-    <form action="/" method="post" name="tast" onSubmit="return chack()">
-        <center><div> Register<br>
-        <div> suname:<input type="text" name="sunames" id="sun" value=""></div>
-        <div>lastname:<input type="text" name="lastnames" id="lastn" value=""></div>
-        <div>usename: <input type="text" name="usenames" id="suen" value=""></div>
-        <div>email:<input type="email" name="emails" id="Email" value=""></div>
-        <div>password:<input type="password" name="passwords" id="pass" value=""></div>
-        <input type="submit" value="Submit">
-        <input type="reset" value="Reset"></center>
-    </form>
-()
+<body><center>
+<h1>Register</h1>
+<form method="POST" action="\from">
+    {{ form.csrf_token }}
+    {{ form.name.label }}
+    {{ form.name }} <br>
+    {{ form.username.label }}
+    {{ form.username }} <br>
+    {{ form.email.label }}
+    {{ form.email }} <br>
+    {{ form.password.label }}
+    {{ form.password }} <br>
+    <input type="submit" value="Submit"></center>>
+</form>
 </body>
 </html>
