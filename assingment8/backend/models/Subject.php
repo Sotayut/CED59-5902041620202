@@ -3,6 +3,7 @@ namespace backend\models;
 
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use yii\validators\Validator;
 
 class Subject extends \common\models\Subject
 {
@@ -13,4 +14,12 @@ class Subject extends \common\models\Subject
             BlameableBehavior::class
         ];
     }
+    public function rules(){
+        return [
+        ['name','required','message' => 'please fill data'],
+        ['name','email','message' => 'fill type email  ja'],
+    ];
+        
+    }
+    
 }
